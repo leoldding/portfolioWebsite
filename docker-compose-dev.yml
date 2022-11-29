@@ -3,7 +3,7 @@ services:
   frontend:
     restart: always
     build:
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
       context: ./frontend
     volumes:
       - /app/node_modules
@@ -16,7 +16,7 @@ services:
   backend:
     restart: always
     build:
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
       context: ./backend
     volumes:
       - ./backend:/app
@@ -24,10 +24,10 @@ services:
   nginx:
     restart: always
     build:
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
       context: ./nginx
     ports:
-      - '80:80'
+      - '3000:80'
     depends_on:
       backend:
         condition: service_started
